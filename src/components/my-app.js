@@ -28,6 +28,7 @@ class MyApp extends LitElement {
     // Anything that's related to rendering should be done in here.
     return html`
     <style>
+
       :host {
         --app-drawer-width: 256px;
         display: block;
@@ -46,6 +47,9 @@ class MyApp extends LitElement {
         --app-drawer-background-color: var(--app-secondary-color);
         --app-drawer-text-color: var(--app-light-text-color);
         --app-drawer-selected-color: #78909C;
+
+        /* -- Nuxeo Branding colors -- */
+        --nuxeo-primary-color: #ccc;
       }
 
       app-header {
@@ -177,6 +181,7 @@ class MyApp extends LitElement {
 
       <!-- This gets hidden on a small screen-->
       <nav class="toolbar-list">
+        <a ?selected="${this._page === 'doc'}" href="/doc">Doc reader</a>
         <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
         <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
         <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
@@ -187,6 +192,7 @@ class MyApp extends LitElement {
     <app-drawer .opened="${this._drawerOpened}"
         @opened-changed="${this._drawerOpenedChanged}">
       <nav class="drawer-list">
+        <a ?selected="${this._page === 'doc'}" href="/doc">Doc reader</a>
         <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
         <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
         <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
@@ -195,6 +201,7 @@ class MyApp extends LitElement {
 
     <!-- Main content -->
     <main role="main" class="main-content">
+      <doc-reader class="page" ?active="${this._page === 'doc'}"></doc-reader>
       <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
       <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
       <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
@@ -267,7 +274,7 @@ class MyApp extends LitElement {
 
   _locationChanged() {
     const path = window.decodeURIComponent(window.location.pathname);
-    const page = path === '/' ? 'view1' : path.slice(1);
+    const page = path === '/' ? 'doc' : path.slice(1);
     this._loadPage(page);
     // Any other info you might want to extract from the path (like page type),
     // you can do here.
@@ -284,6 +291,9 @@ class MyApp extends LitElement {
 
   _loadPage(page) {
     switch(page) {
+      case 'doc':
+        import('../components/doc-reader.js');
+        break;
       case 'view1':
         import('../components/my-view1.js').then((module) => {
           // Put code in here that you want to run every time when

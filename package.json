@@ -1,13 +1,9 @@
 {
-  "name": "pwa-starter-kit",
-  "version": "0.9.0",
-  "contributors": [
-    "The Polymer Authors"
-  ],
-  "license": "BSD-3-Clause",
-  "repository": "Polymer/pwa-starter-kit",
+  "name": "nuxeo-elements-tutorial-lit",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
   "scripts": {
-    "start": "polymer serve",
+    "start": "polymer serve -p 5000 --proxy-path /nuxeo --proxy-target http://localhost:8080/nuxeo",
     "build": "npm run build:prpl-server && npm run build:static",
     "build:prpl-server": "polymer build --auto-base-path && gulp prpl-server",
     "build:static": "polymer build",
@@ -20,7 +16,10 @@
     "test:regenerate_screenshots": "mocha test/integration/screenshots-baseline/regenerate.js --timeout=15000"
   },
   "dependencies": {
+    "@nuxeo/nuxeo-elements": "^3.0.0-SNAPSHOT",
+    "@nuxeo/nuxeo-ui-elements": "^3.0.0-SNAPSHOT",
     "@polymer/app-layout": "^3.0.0",
+    "@polymer/iron-icons": "^3.0.1",
     "@polymer/lit-element": "^0.6.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.0.0",

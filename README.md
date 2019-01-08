@@ -1,3 +1,7 @@
+# Nuxeo Elements tutorial for LitElement
+
+Our [Nuxeo Elements tutorial](https://doc.nuxeo.com/nxdoc/nuxeo-elements-tutorial/) for [LitElement](https://lit-element.polymer-project.org/)
+
 [![Built with pwa–starter–kit](https://img.shields.io/badge/built_with-pwa–starter–kit_-blue.svg)](https://github.com/Polymer/pwa-starter-kit "Built with pwa–starter–kit")
 
 ```git clone --depth 1 -b template-no-redux --single-branch https://github.com/Polymer/pwa-starter-kit nuxeo-elements-tutorial-lit```
@@ -22,8 +26,14 @@ This template has the same UI elements as the `master` one (`app-layout` element
 
 ![pwa-starter-kit screenshot](https://user-images.githubusercontent.com/1369170/39715580-a1be5126-51e2-11e8-8440-96b07be03a3c.png)
 
-## TODOs
+## License
 
-- [x] Setup Safari testing on Travis.
-- [x] Deploy all templates as demos.
-- [ ] Update to latest [Material Web Components](https://github.com/material-components/material-components-web-components).
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) 
+
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+All images, icons, fonts, and videos contained in this folder are copyrighted by Nuxeo, all rights reserved.
+
+## About Nuxeo
+
+Nuxeo dramatically improves how content-based applications are built, managed and deployed, making customers more agile, innovative and successful. Nuxeo provides a next generation, enterprise ready platform for building traditional and cutting-edge content oriented applications. Combining a powerful application development environment with SaaS-based tools and a modular architecture, the Nuxeo Platform and Products provide clear business value to some of the most recognizable brands including Verizon, Electronic Arts, Sharp, FICO, the U.S. Navy, and Boeing. Nuxeo is headquartered in New York and Paris. More information is available at www.nuxeo.com.
