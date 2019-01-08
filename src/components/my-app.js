@@ -292,23 +292,23 @@ class MyApp extends LitElement {
   _loadPage(page) {
     switch(page) {
       case 'doc':
-        import('../components/doc-reader.js');
+        import(/* webpackChunkName: "reader" */ '../components/doc-reader.js');
         break;
       case 'view1':
-        import('../components/my-view1.js').then((module) => {
+        import(/* webpackChunkName: "view1" */ '../components/my-view1.js').then((module) => {
           // Put code in here that you want to run every time when
           // navigating to view1 after my-view1.js is loaded.
         });
         break;
       case 'view2':
-        import('../components/my-view2.js');
+        import(/* webpackChunkName: "view2" */ '../components/my-view2.js');
         break;
       case 'view3':
-        import('../components/my-view3.js');
+        import(/* webpackChunkName: "view3" */ '../components/my-view3.js');
         break;
       default:
         page = 'view404';
-        import('../components/my-view404.js');
+        import(/* webpackChunkName: "404" */ '../components/my-view404.js');
     }
 
     this._page = page;
