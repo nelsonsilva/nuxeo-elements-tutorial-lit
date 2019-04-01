@@ -1,0 +1,8 @@
+{{#if label}}
+<div role="widget">
+      <label>{{label}}</label>
+      <{{is}}{{#each attributes}} {{this.name}}="{{this.value}}"{{/each}}>{{{content}}}</{{is}}>
+    </div>
+{{else}}
+<{{is}} role="widget"{{#each attributes}} {{this.name}}="{{this.value}}"{{/each}}>{{{content}}}</{{is}}>
+{{/if}}

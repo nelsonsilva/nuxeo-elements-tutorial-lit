@@ -1,0 +1,70 @@
+{
+  "name": "nuxeo-workspace-metadata-layout",
+  "elements":[
+    {
+      "properties": {
+        "value": "{{field}}"
+      },
+      "label": "label.dublincore.title",
+      "field": "dc:title"
+    },
+    {
+      "properties": {
+        "value": "{{field}}"
+      },
+      "label": "label.dublincore.description",
+      "hidden": "{{!field}}",
+      "field": "dc:description"
+    },
+    {
+      "properties": {
+        "value": "{{field}}"
+      },
+      "label": "label.dublincore.nature",
+      "hidden": "{{!field}}",
+      "field": "dc:description"
+    },
+    { 
+      "is":"nuxeo-directory-suggestion",
+      "attributes": {
+          ".value": "{{field}}",
+          "label": "{{label}}",
+          "directory-name": "l10nsubjects",
+          "?multiple": true,
+          "?dbl10n": true,
+          "?readonly": true
+      },
+      "label": "label.dublincore.subjects",
+      "field": "dc:subjects",
+      "hidden": "{{!field.length}}"
+    },
+    {
+      "properties":{
+        "value":"{{field}}"
+      },
+      "field": "dc:coverage",
+      "label": "label.dublincore.coverage",
+      "hidden": "{{!field}}"
+    },
+    {
+      "properties":{
+        "value":"{{field}}"
+      },
+      "field": "dc:expires",
+      "label": "label.dublincore.expire",
+      "hidden": "{{!field}}"
+    }
+  ],
+  "properties":[
+    {
+      "name":"document",
+      "type":"Object",
+      "doctype":"Workspace",
+      "schemas":[
+        "dublincore",
+        "common",
+        "uid"
+      ]
+    }
+  ]
+}

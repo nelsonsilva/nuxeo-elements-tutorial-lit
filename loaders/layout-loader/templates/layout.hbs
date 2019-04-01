@@ -1,0 +1,109 @@
+import { html } from '@polymer/lit-element';
+import { DocumentLayout } from '../document-layout';
+{{#each imports}}
+import '@nuxeo/nuxeo-ui-elements/widgets/{{this}}.js';'
+{{/each}}
+
+window.customElements.define({{element}}, class extends DocumentLayout {
+
+  properties: {
+    {{#each properties}}
+    {{this.name}}: { type: {{this.type}} },
+    {{/each}}
+  }
+
+  render() {
+    const { i18n, formatDirectory } = this;
+    return html`
+      <style>
+        *[role=widget] {
+          margin-bottom: 16px;
+        }
+
+        label {
+          @apply --nuxeo-label;
+        }
+      </style>
+
+      {{#each elements}}  
+      {{#if label}}
+        <div role="widget">
+          <label>${i18n('{{label}}')</label>
+          <{{is}} {{#each attributes}} {{@key}}="{{this}}"{{/each}}>{{{content}}}</{{is}}>
+        </div>
+      {{else}}
+        <{{is}} role="widget"{{#each attributes}} .{{@key}}="{{this}}"{{/each}}>{{{content}}}</{{is}}>
+      {{/if}}
+      {{/each}}
+
+      <div role="widget">
+        <label>${i18n('label.dublincore.title')}</label>
+        <div name="title">${this._get("dc:title")}</div>
+      </div>
+
+      <div role="widget" ?hidden="${!this._get("dc:description")}">
+        <label>${i18n('label.dublincore.description')}</label>
+        <div name="description" class="multiline">${this._get("dc:description")}</div>
+      </div>
+
+      <div role="widget" ?hidden="${!this._get("dc:nature")}">
+        <label>${i18n('label.dublincore.nature')}</label>
+        <div name="nature">${formatDirectory(this._get("dc:nature"))}</div>
+      </div>
+
+      <nuxeo-directory-suggestion role="widget"
+                                  label="${i18n('label.dublincore.subjects')}"
+                                  directory-name="l10nsubjects"
+                                  name="subjects"
+                                  .value="${this._get("dc:subjects")}"
+                                  ?hidden="${!this._get("dc:subjects").length}"
+                                  multiple
+                                  dbl10n
+                                  readonly>
+      </nuxeo-directory-suggestion>
+
+      <div role="widget" ?hidden="${!this._get("dc:coverage")}">
+        <label>${i18n('label.dublincore.coverage')}</label>
+        <div name="coverage">${formatDirectory(this._get("dc:coverage"))}</div>
+      </div>
+    `;
+  }
+
+  constructor() {
+    super();
+  }
+
+  formatDirectory(entry) {
+    return entry && entry.label;
+  }
+});
+
+
+<dom-module id="{{element}}">
+  <template>
+    <style>
+      *[role=widget] {
+        padding: 5px;
+      }
+    </style>
+    {{#each elements}}  
+      {{#if label}}
+      <div role="widget">
+            <label>{{label}}</label>
+            <{{is}}{{#each attributes}} {{this.name}}="{{this.value}}"{{/each}}>{{{content}}}</{{is}}>
+          </div>
+      {{else}}
+      <{{is}} role="widget"{{#each attributes}} {{this.name}}="{{this.value}}"{{/each}}>{{{content}}}</{{is}}>
+      {{/if}}
+    {{/each}}
+  </template>
+
+  <script>
+    alert("Here");
+    Polymer({
+      is: '{{element}}',
+      behaviors: [Nuxeo.LayoutBehavior],
+      
+    });
+  </script>
+</dom-module>

@@ -6,6 +6,9 @@ import '@nuxeo/nuxeo-elements/nuxeo-page-provider'
 import '@nuxeo/nuxeo-ui-elements/widgets/nuxeo-file'
 import '@nuxeo/nuxeo-ui-elements/widgets/nuxeo-document-suggestion'
 import './nuxeo-documents-table'
+import './doc-layout'
+import './doc-form-layout'
+//import '../layouts/document/workspace/nuxeo-workspace-metadata-layout.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -43,6 +46,8 @@ class DocReader extends PageViewElement {
 
       ${doc ? 
         html`
+        <h3>Metadata</h3>
+        <nuxeo-document-layout .document="${doc}" layout="metadata"></nuxeo-document-layout>
         <h2>Title: ${doc.title}</h2>
         <p>ID: ${doc.uid}</p>
         <p>Repository: ${doc.repository}</p>
@@ -67,7 +72,7 @@ class DocReader extends PageViewElement {
   }
 
   static get properties() { return {
-    docPath: { type: String },
+    path: { type: String },
     doc: { type: Object },
     children: { type: Array },
     params: { type: Object }

@@ -1,0 +1,36 @@
+{
+  "element": "dummy-layout",
+  "elements":[
+    {
+      "attributes":[
+        {
+          "name":"value",
+          "value":"[[document.properties.dc:title]]"
+        }
+      ],
+      "label": "[[i18n('label.dublincore.title')]]"
+    },
+    {
+      "attributes":[
+        {
+          "name":"value",
+          "value":"[[document.properties.dc:description]]"
+        }
+      ],
+      "label": "[[i18n('label.dublincore.description')]]",
+      "hidden": "[[!document.properties.dc:description]]"
+    }
+  ],
+  "properties":[
+    {
+      "name":"document",
+      "type":"Object",
+      "doctype":"Workspace",
+      "schemas":[
+        "dublincore",
+        "common",
+        "uid"
+      ]
+    }
+  ]
+}
